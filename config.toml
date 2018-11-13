@@ -1,0 +1,65 @@
+baseurl = "https://lazygopher.me/"
+title = "LazyGopher.me"
+
+theme = "hugo-coder"
+
+languagecode = "en"
+
+canonifyurls = true
+
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+disqusShortname = "oxynux"
+
+[params]
+    author = "Oxynux | Arnaud Astruc"
+    info = "DevOps, Freelance, FLOSS-enthusiast & student"
+    description = "Arnaud Astruc's personal website"
+    avatarurl = "images/aastruc.jpg"
+
+    keywords = "website,blog,developer,devops,personal,freelance,open source,free software"
+
+    dateformat = "January 2, 2006"
+
+    hidecredits = false
+    hidecopyright = false
+
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github"
+    weight = 1
+    url = "https://github.com/oxynux/"
+[[params.social]]
+    name = "Gitlab"
+    icon = "fab fa-gitlab"
+    weight = 2
+    url = "https://gitlab.com/oxynux/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter"
+    weight = 3
+    url = "https://twitter.com/Oxynux/"
+[[params.social]]
+    name = "LinkedIn"
+    icon = "fab fa-linkedin"
+    weight = 4
+    url = "https://www.linkedin.com/in/arnaud-astruc/"
+[[params.social]]
+    name = "Medium"
+    icon = "fab fa-medium"
+    weight = 5
+    url = "https://medium.com/@oxynux"
+
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "posts"
+[[menu.main]]
+    name = "About me"
+    weight = 2
+    url = "about"
+[[menu.main]]
+    name = "Contact"
+    weight = 3
+    url = "contact"
