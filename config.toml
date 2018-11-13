@@ -10,7 +10,7 @@ canonifyurls = true
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disqusShortname = "oxynux"
+disqusShortname = "lazygopher-me"
 
 [params]
     author = "Oxynux | Arnaud Astruc"
